@@ -2,7 +2,7 @@
     "name": "xsj-emmylua",
     "displayName": "xsj-EmmyLua",
     "description": "EmmyLua for vscode",
-    "version": "0.5.15",
+    "version": "0.5.16",
     "icon": "res/icon.png",
     "publisher": "shellingye",
     "engines": {

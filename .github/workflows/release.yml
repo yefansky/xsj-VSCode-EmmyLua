@@ -18,8 +18,11 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
+      - name: Clean yarn.lock
+        run: rm -f yarn.lock
+
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --force
 
       - name: Install standard-version
         run: yarn add --dev standard-version
@@ -45,7 +48,7 @@ jobs:
 
       - name: Package Extension
         run: vsce package
-        
+
       - name: Publish to Marketplace
         uses: HaaLeo/publish-vscode-extension@v1.6.2
         with:

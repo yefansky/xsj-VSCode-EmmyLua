@@ -1,0 +1,54 @@
+name: xsj emmylua
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Install standard-version
+        run: yarn add --dev standard-version
+
+      - name: Install vsce
+        run: yarn global add @vscode/vsce
+
+      - name: Set Git user name and email
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Run standard-version
+        run: npx standard-version
+
+      - name: Push changes and tags
+        run: git push --follow-tags
+
+      - name: Run prepare scripts
+        run: |
+          node ./build/prepare-version.js
+          node ./build/prepare.js
+
+      - name: Package Extension
+        run: vsce package
+        
+      - name: Publish to Marketplace
+        uses: HaaLeo/publish-vscode-extension@v1.6.2
+        with:
+          pat: ${{ secrets.SHELLING }}
+          registryUrl: https://marketplace.visualstudio.com
+          skipDuplicate: true

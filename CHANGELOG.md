@@ -1,9 +1,8 @@
-# Change Log
+# Changelog
 
-## next
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-1. 一段时间内emmylua将只有BUG修复
-2. 全新的语言服务正在开发中
+### 0.5.12 (2025-02-05)
 
 ## 0.5.11
 

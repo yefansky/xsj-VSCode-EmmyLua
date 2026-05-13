@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.5.22 (2026-05-13)
+
+
+### Bug Fixes
+
+* 修改publisher ([28dc58d](https://github.com/EmmyLua/VSCode-EmmyLua/commit/28dc58df6e6a31d1415a19519e6601fb386576c2))
+
 ### 0.5.21 (2026-05-13)
 
 ### 0.5.20 (2026-05-13)

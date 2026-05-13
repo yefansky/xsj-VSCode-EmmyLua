@@ -49,14 +49,9 @@ jobs:
       - name: Package Extension
         run: vsce package
 
-      - name: Find vsix file
-        id: find-vsix
-        run: echo "file=$(ls *.vsix)" >> $GITHUB_OUTPUT
-
       - name: Publish to Marketplace
         uses: HaaLeo/publish-vscode-extension@v1.6.2
         with:
           pat: ${{ secrets.SHELLING }}
           registryUrl: https://marketplace.visualstudio.com
           skipDuplicate: true
-          extensionFile: ${{ steps.find-vsix.outputs.file }}

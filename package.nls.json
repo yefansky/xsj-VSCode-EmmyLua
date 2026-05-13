@@ -1,5 +1,5 @@
 {
-    "emmylua.java.home": "Specifies the path to the java home",
+    "emmylua.server.path": "Specifies a custom path to the language server binary",
     "emmylua.source.roots": "Source roots of your project",
     "emmylua.completion.caseSensitive": "Case sensitive completion",
     "emmylua.codeLens": "Show codeLens or not",

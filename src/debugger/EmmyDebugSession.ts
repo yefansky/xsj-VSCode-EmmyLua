@@ -66,16 +66,15 @@ export class EmmyDebugSession extends DebugSession implements IEmmyStackContext 
                     this.sendEvent(new OutputEvent(`Server(${args.host}:${args.port}) open successfully, wait for connection...\n`));
                 })
                 .on('error', err => {
-                    this.sendEvent(new OutputEvent(`${err}`, 'stderr'));
-                    response.success = false;
-                    response.message = `${err}`;
+                    this.sendEvent(new OutputEvent(`Failed to listen on ${args.host}:${args.port} — ${err}\n`, 'stderr'));
                     this.sendResponse(response);
+                    this.sendEvent(new TerminatedEvent());
                 });
             this.socket = socket;
             this.sendEvent(new Event('showWaitConnection'));
         }
         else {
-            // send resp
+            // IDE connects to Lua process
             const client = net.connect(args.port, args.host)
                 .on('connect', () => {
                     this.sendResponse(response);
@@ -83,9 +82,10 @@ export class EmmyDebugSession extends DebugSession implements IEmmyStackContext 
                     this.readClient(client);
                 })
                 .on('error', err => {
-                    response.success = false;
-                    response.message = `${err}`;
+                    this.sendEvent(new OutputEvent(`Failed to connect to ${args.host}:${args.port} — ${err}\nMake sure the Lua process is running with dbg.tcpListen(${args.port}).\n`, 'stderr'));
                     this.sendResponse(response);
+                    this.sendEvent(new Event('connectionFailed', { message: `Cannot connect to ${args.host}:${args.port}. Is the Lua process running with dbg.tcpListen(${args.port})?` }));
+                    this.sendEvent(new TerminatedEvent());
                 });
         }
     }

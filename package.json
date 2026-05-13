@@ -14,7 +14,8 @@
     ],
     "activationEvents": [
         "onLanguage:lua",
-        "onDebug"
+        "onDebug",
+        "onStartupFinished"
     ],
     "repository": {
         "type": "git",
@@ -281,13 +282,13 @@
         "configuration": {
             "title": "EmmyLua",
             "properties": {
-                "emmylua.java.home": {
+                "emmylua.server.path": {
                     "type": [
                         "string",
                         "null"
                     ],
                     "default": null,
-                    "description": "%emmylua.java.home%"
+                    "description": "%emmylua.server.path%"
                 },
                 "emmylua.source.roots": {
                     "type": [
@@ -358,8 +359,13 @@
                 },
                 "emmylua.requireLikeFunctions": {
                     "type": "string",
-                    "default": "require",
+                    "default": "require;Include",
                     "description": "%emmylua.requirelike.names%"
+                },
+                "emmylua.supportModulePattern": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Support Lua 5.1 module() pattern. When enabled, functions defined after module(\"Name\") are accessible as Name.func and can be found via goto definition."
                 },
                 "emmylua.typecheck.anyTypeCanAssignToAnyDefineType": {
                     "type": "boolean",

@@ -1,3 +1,4 @@
+# Exclude development files from VSIX package
 .vscode/**
 .vscode-test/**
 out/test/**
@@ -11,3 +12,12 @@ vsc-extension-quickstart.md
 tslint.json
 build.sh
 prepare-version.js
+DESIGN.md
+CLAUDE.md
+LANGUAGE_SERVER_INTERFACE.md
+
+# Exclude C++ source and build files (only binary is needed)
+emmylua-ls/**
+
+# Exclude old Java server JAR (replaced by C++ binary)
+server/EmmyLua-LS-all.jar

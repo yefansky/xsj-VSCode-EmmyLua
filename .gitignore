@@ -11,6 +11,7 @@ temp
 /debugger/emmy/linux
 /debugger/emmy/mac
 /debugger/emmy/windows
-/server
 /package-lock.json
 /temp
+emmylua-ls/build
+emmylua-ls/third_party

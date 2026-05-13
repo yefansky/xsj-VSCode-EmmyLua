@@ -4,7 +4,7 @@
     "description": "EmmyLua for vscode",
     "version": "0.5.16",
     "icon": "res/icon.png",
-    "publisher": "shellingye",
+    "publisher": "xsj",
     "engines": {
         "vscode": "^1.70.0"
     },

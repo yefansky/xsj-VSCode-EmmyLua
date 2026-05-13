@@ -1,9 +1,13 @@
-# Change Log
+# Changelog
 
-## next
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-1. 一段时间内emmylua将只有BUG修复
-2. 全新的语言服务正在开发中
+### 0.5.17 (2026-05-13)
+
+
+### Features
+
+* 使用C++进行解析（替换掉java） ([49dc53a](https://github.com/EmmyLua/VSCode-EmmyLua/commit/49dc53a9256cba616e99ed2f2b1203fe0be9c801))
 
 ## 0.5.11
 

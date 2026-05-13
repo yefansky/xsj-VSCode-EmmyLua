@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile TypeScript",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "compile"],
+            "group": "build",
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "Build C++ Server",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "emmylua-ls/build", "--config", "Release"],
+            "group": "build",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Copy C++ Binary",
+            "type": "shell",
+            "command": "cmd",
+            "args": ["/c", "copy", "/Y", "emmylua-ls\\build\\Release\\emmylua-ls.exe", "server\\"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Build All",
+            "dependsOn": ["Build C++ Server", "Copy C++ Binary", "Compile TypeScript"],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

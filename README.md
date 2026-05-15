@@ -1,28 +1,21 @@
 ![logo](/res/logo.png)
-# EmmyLua for VSCode
+# jx3-EmmyLua
 
-VSCode version of [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua)
+基于 [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua) VSCode 早期版本修改
 
-[![Build status](https://ci.appveyor.com/api/projects/status/5psq8f7jjix23mwg?svg=true)](https://ci.appveyor.com/project/EmmyLua/vscode-emmylua)
-
-QQ交流群：`29850775` (最新版本以及部分视频演示在群文件中下载)
-
-[![Online EmmyLua Doc](https://img.shields.io/badge/emmy-doc-46BC99.svg?style=flat-square)](https://emmylua.github.io)
-[![donate](https://img.shields.io/badge/donate-emmy-FF69B4.svg?style=flat-square)](https://emmylua.github.io/donate.html)
-[![加入QQ群](https://img.shields.io/badge/chat-QQ群-46BC99.svg?style=flat-square)](//shang.qq.com/wpa/qunwpa?idkey=f1acce081c45fbb5670ed5f880f7578df7a8b84caa5d2acec230ac957f0c1716)
-
-![snapshot](/snapshot/overview.gif)
+- 将语言解析由 Java 改为 C++ 实现，移除 Java 依赖
+- 优化了索引建立效率，对超大 Lua 工程能够高效加载
+- 实现了引用查找、定义跳转等原版缺失功能
+- 优化了函数参数提示方式，去除多余的提示信息
+- 优化了调试拉起流程，有对应 UI
+- 调试时支持端口选择器，自动记录最近使用的端口
+- 新增输出通道，方便排查问题
 
 [更新日志](CHANGELOG.md)
 
 [CHANGELOG](CHANGELOG_EN.md)
 
 FAQ:
-
-Q: 为什么报找不到格式化程序？
-
-A: 原先emmylua采用的luafmt格式化库，但是该库基本上已经无人维护无法支持lua5.4，而且就issue来看问题也比较多，基于这样的考虑我移除了luafmt库，重新实现了一套格式化工具
-[EmmyLuaCodeStyle](https://marketplace.visualstudio.com/items?itemName=CppCXY.emmylua-codestyle)
 
 Q: 为什么附加调试没有作用？
 

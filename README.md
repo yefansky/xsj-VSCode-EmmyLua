@@ -1,7 +1,9 @@
 ![logo](/res/logo.png)
-# jx3-EmmyLua
+# jx3-EmmyLua (C++ Native)
 
-基于 [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua) VSCode 早期版本修改
+**高性能 C++ Lua 语言服务器**，专为 VS Code 超大工程优化。  
+拥有全新的图形化调试界面、引用查找和定义跳转等增强功能。  
+本项目基于 [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua) 早期版本深度重构。
 
 - 将语言解析由 Java 改为 C++ 实现，移除 Java 依赖
 - 优化了索引建立效率，对超大 Lua 工程能够高效加载
@@ -45,9 +47,11 @@ A: 在项目根目录创建`emmy.config.json`然后如下填写:
 本项目基于 MIT 许可证开源。详情请参阅 [LICENSE](LICENSE) 文件。
 
 ![logo](/res/logo.png)
-# jx3-EmmyLua
+# jx3-EmmyLua (C++ Native)
 
-Based on a modified early version of the [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua) VSCode extension.
+**A high-performance C++ Lua language server** optimized for large-scale VS Code projects.  
+Features a new graphical debugging UI, reference search, go-to-definition, and more.  
+This project is a deep re-architecture based on an early version of [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua).
 
 - Changed language parsing from Java to C++, removing Java dependency
 - Optimized index building for efficient loading of very large Lua projects

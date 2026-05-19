@@ -2,7 +2,7 @@
     "name": "jx3-emmylua",
     "displayName": "jx3-EmmyLua",
     "description": "EmmyLua for vscode",
-    "version": "0.5.26",
+    "version": "0.5.27",
     "icon": "res/icon.png",
     "publisher": "shellingye",
     "engines": {

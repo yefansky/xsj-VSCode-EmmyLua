@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.5.27 (2026-05-19)
+
+
+### Bug Fixes
+
+* 插件合规性修改 ([15e4dea](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/15e4dea67d64ca0c97c7cb289f35c741272e318a))
+
 ### 0.5.26 (2026-05-19)
 
 ### 0.5.25 (2026-05-15)

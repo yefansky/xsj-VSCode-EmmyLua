@@ -19,8 +19,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/EmmyLua/VSCode-EmmyLua"
+        "url": "https://github.com/yefansky/xsj-VSCode-EmmyLua"
     },
+    "homepage": "https://github.com/yefansky/xsj-VSCode-EmmyLua/blob/main/README.md",
     "bugs": {
         "url": "https://github.com/EmmyLua/VSCode-EmmyLua/issues"
     },

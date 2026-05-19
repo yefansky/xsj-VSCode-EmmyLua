@@ -40,3 +40,55 @@ A: 在项目根目录创建`emmy.config.json`然后如下填写:
     ]
 }
 ```
+## 许可证
+
+本项目基于 MIT 许可证开源。详情请参阅 [LICENSE](LICENSE) 文件。
+
+![logo](/res/logo.png)
+# jx3-EmmyLua
+
+Based on a modified early version of the [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua) VSCode extension.
+
+- Changed language parsing from Java to C++, removing Java dependency
+- Optimized index building for efficient loading of very large Lua projects
+- Implemented previously missing features such as reference search and go-to-definition
+- Improved function parameter hints by removing redundant information
+- Streamlined the debug launch process with a dedicated UI
+- Added a port selector during debugging that remembers the most recently used port
+- Added an output channel for easier troubleshooting
+
+[Changelog](CHANGELOG.md)
+
+[CHANGELOG (EN)](CHANGELOG_EN.md)
+
+**FAQ**
+
+**Q: Why doesn't attach debugging work?**  
+A: Attach debugging tries to retrieve Lua symbols from the process to determine the Lua version for debugging calculations, etc. Therefore, the target process must export Lua symbols.
+
+**Q: Why can't Emmy New Debug connect to the target?**  
+A: Usually because the injected `require` call fails, or `require("emmy_core")` returns true, which means the executable does not export Lua symbols.
+
+**Q: How can I exclude large files from being parsed in my project?**  
+A: Create an `emmy.config.json` file in the project root with the following content:
+```json
+{
+    "source": [
+        {
+            "dir": "./",
+            "exclude": [
+                "csv/**.lua"
+            ]
+        }
+    ]
+}
+```
+
+## Credits
+
+This extension is a fork of the original [EmmyLua](https://github.com/EmmyLua/VSCode-EmmyLua) project by [@EmmyLua](https://github.com/EmmyLua). 
+It has been significantly re-architected with a new C++ language server for improved performance and additional features.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -56,15 +58,29 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Version: $VERSION"
 
-      - name: Get Changelog
+      - name: Extract current version changelog
         id: changelog
         run: |
-          # 从 CHANGELOG.md 中提取最新版本的更改记录
-          # 如果使用了 standard-version，CHANGELOG.md 已经自动更新
-          CHANGELOG=$(cat CHANGELOG.md)
+          # 提取当前版本的 changelog 内容
+          VERSION=$(node -p "require('./package.json').version")
+          
+          # 从 CHANGELOG.md 中提取当前版本的更改内容
+          # 使用 awk 提取两个版本标题之间的内容
+          CHANGELOG=$(awk "/^### ${VERSION}/,/^### [0-9]+\.[0-9]+\.[0-9]+/" CHANGELOG.md | head -n -1)
+          
+          # 如果没有找到，使用备用方法
+          if [ -z "$CHANGELOG" ]; then
+            CHANGELOG=$(awk "/^### ${VERSION}/,/^###|^##/" CHANGELOG.md | grep -v "^### " | grep -v "^### " | tail -n +2 | head -n -1)
+          fi
+          
+          # 写入临时文件
+          echo "$CHANGELOG" > /tmp/release_notes.md
+          cat /tmp/release_notes.md
+          
+          # 设置输出
           {
             echo 'changelog<<EOF'
-            echo "$CHANGELOG"
+            cat /tmp/release_notes.md
             echo 'EOF'
           } >> $GITHUB_OUTPUT
 
@@ -73,7 +89,7 @@ jobs:
         with:
           tag_name: v${{ steps.version.outputs.version }}
           name: Release v${{ steps.version.outputs.version }}
-          body_path: CHANGELOG.md
+          body: ${{ steps.changelog.outputs.changelog }}
           files: |
             *.vsix
         env:

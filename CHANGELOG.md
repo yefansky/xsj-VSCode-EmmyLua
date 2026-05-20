@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.5.30 (2026-05-20)
+
+
+### Features
+
+* 添加Release发布支持，自动上传VSIX文件和Changelog ([6d91ed5](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/6d91ed5bdf56dd1872d93bd6fa6a3fb9d41166f9))
+
 ### 0.5.29 (2026-05-19)
 
 ### 0.5.28 (2026-05-19)

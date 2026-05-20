@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.31](https://github.com/yefansky/xsj-VSCode-EmmyLua/compare/v0.5.30...v0.5.31) (2026-05-20)
+
+
+### Bug Fixes
+
+* 只在Release中显示本次版本的更改，而非完整的Changelog ([285e3f2](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/285e3f22b579d401d11e21205a63742994dd3865))
+
 ### 0.5.30 (2026-05-20)
 
 

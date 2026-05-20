@@ -58,24 +58,38 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Version: $VERSION"
 
-      - name: Extract current version changelog
+      - name: Generate commit changelog
         id: changelog
         run: |
-          # 提取当前版本的 changelog 内容
+          # 获取当前版本
           VERSION=$(node -p "require('./package.json').version")
           
-          # 从 CHANGELOG.md 中提取当前版本的更改内容
-          # 使用 awk 提取两个版本标题之间的内容
-          CHANGELOG=$(awk "/^### ${VERSION}/,/^### [0-9]+\.[0-9]+\.[0-9]+/" CHANGELOG.md | head -n -1)
+          # 获取上一个发布的tag（最后一个v开头的tag，除了当前版本）
+          PREV_TAG=$(git tag -l "v*" --sort=-version:refname | grep -v "v${VERSION}" | head -n 1)
           
-          # 如果没有找到，使用备用方法
-          if [ -z "$CHANGELOG" ]; then
-            CHANGELOG=$(awk "/^### ${VERSION}/,/^###|^##/" CHANGELOG.md | grep -v "^### " | grep -v "^### " | tail -n +2 | head -n -1)
+          if [ -z "$PREV_TAG" ]; then
+            # 如果没有前一个tag，获取所有commit
+            COMMIT_LOG=$(git log --oneline --pretty=format:"- %s (%h)" | head -20)
+          else
+            # 获取两个tag之间的commit
+            COMMIT_LOG=$(git log "${PREV_TAG}..HEAD" --pretty=format:"- %s (%h)")
           fi
+          
+          # 如果没有获取到commit，尝试另一种方法
+          if [ -z "$COMMIT_LOG" ]; then
+            COMMIT_LOG=$(git log --oneline --pretty=format:"- %s (%h)" HEAD~10..HEAD)
+          fi
+          
+          # 创建完整的changelog
+          CHANGELOG="## Version ${VERSION}
+          
+$(git log --pretty=format:"- %s ([%h](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/%H))" -$(git rev-list --all | wc -l)..HEAD 2>/dev/null || git log --pretty=format:"- %s ([%h](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/%H))" -20)
+
+---
+**Full Changelog**: https://github.com/yefansky/xsj-VSCode-EmmyLua/compare/v0.5.30...v${VERSION}"
           
           # 写入临时文件
           echo "$CHANGELOG" > /tmp/release_notes.md
-          cat /tmp/release_notes.md
           
           # 设置输出
           {

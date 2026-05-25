@@ -1,6 +1,8 @@
 ![logo](/res/logo.png)
 # jx3-EmmyLua (C++ Native)
 
+根据微软官方要求，为避免和原插件名称混淆，本插件名称添加后缀(C++ Native)
+
 **高性能 C++ Lua 语言服务器**，专为 VS Code 超大工程优化。  
 拥有全新的图形化调试界面、引用查找和定义跳转等增强功能。  
 本项目基于 [EmmyLua](https://github.com/EmmyLua/IntelliJ-EmmyLua) 早期版本深度重构。

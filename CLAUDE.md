@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Kscc (claudexxxxxx.ai/code) when working with code in this repository.
+This file provides guidance to kscc (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -50,6 +50,18 @@ C++ dependencies are auto-fetched by CMake via FetchContent: nlohmann-json v3.11
 
 Versions for debugger binaries are pinned in `build/config.js`.
 
+### Tests
+
+**C++ tests** (doctest): Run from the build directory:
+```bash
+cd emmylua-ls/build
+ctest -C Release           # Run all tests
+./Release/emmylua-ls-test  # Or run binary directly (Windows)
+```
+Eight test files in `emmylua-ls/test/` cover: LSP transport, Lua parser, symbol index, workspace manager, real file parsing, base Lua parsing, and encoding.
+
+**TypeScript tests**: Not implemented. The `npm test` script in package.json is non-functional — there is no `test/` directory under `src/`.
+
 ## Architecture
 
 ### TypeScript Extension (`src/`)
@@ -65,6 +77,8 @@ Versions for debugger binaries are pinned in `build/config.js`.
 ### C++ Language Server (`emmylua-ls/`)
 
 Replaces the former Java-based EmmyLua-LS. Communicates via JSON-RPC 2.0 over stdio (or TCP port 5007 in dev mode).
+
+**Note:** `src/main.cpp` is monolithic (~1490 lines) — all LSP request handlers are implemented inline in this single file, not split into separate handler modules.
 
 - `src/main.cpp` — Entry point, `--stdio` / `--tcp <port>` modes
 - `src/lsp/` — Transport (Content-Length framing on stdin/stdout), Dispatcher (method routing)
@@ -108,3 +122,12 @@ All in `emmylua.*` namespace. Key ones: `emmylua.server.path` (custom server bin
 
 - `DESIGN.md` — C++ language server implementation plan with phased rollout
 - `LANGUAGE_SERVER_INTERFACE.md` — Complete extension↔server protocol spec
+
+## CI/CD
+
+GitHub Actions (`.github/workflows/release.yml`) runs on push to `main`:
+1. `standard-version` auto-bumps version in package.json based on conventional commits
+2. Pushes tag, packages VSIX, creates GitHub Release with changelog
+3. Publishes to VS Code Marketplace
+
+**Commit conventions**: The project uses [Conventional Commits](https://www.conventionalcommits.org/) via `standard-version`. Use prefixes: `fix:`, `feat:`, `chore:`, `docs:`, etc. This drives automatic version bumping and changelog generation.

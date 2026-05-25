@@ -81,16 +81,12 @@ jobs:
           fi
           
           # 创建完整的changelog
-          CHANGELOG="## Version ${VERSION}
-          
-$(git log --pretty=format:"- %s ([%h](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/%H))" -$(git rev-list --all | wc -l)..HEAD 2>/dev/null || git log --pretty=format:"- %s ([%h](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/%H))" -20)
+          echo "## Version ${VERSION}" > /tmp/release_notes.md
+          git log --pretty=format:"- %s ([%h](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/%H))" -$(git rev-list --all | wc -l)..HEAD 2>/dev/null >> /tmp/release_notes.md || git log --pretty=format:"- %s ([%h](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/%H))" -20 >> /tmp/release_notes.md
+          echo "" >> /tmp/release_notes.md
+          echo "---" >> /tmp/release_notes.md
+          echo "**Full Changelog**: https://github.com/yefansky/xsj-VSCode-EmmyLua/compare/v0.5.30...v${VERSION}" >> /tmp/release_notes.md
 
----
-**Full Changelog**: https://github.com/yefansky/xsj-VSCode-EmmyLua/compare/v0.5.30...v${VERSION}"
-          
-          # 写入临时文件
-          echo "$CHANGELOG" > /tmp/release_notes.md
-          
           # 设置输出
           {
             echo 'changelog<<EOF'

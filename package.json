@@ -1,5 +1,5 @@
 {
-    "name": "jx3-emmylua(C++ Native)",
+    "name": "jx3-emmylua-cppNative",
     "displayName": "jx3-EmmyLua(C++ Native)",
     "description": "EmmyLua for vscode(C++ Native)",
     "version": "0.5.32",

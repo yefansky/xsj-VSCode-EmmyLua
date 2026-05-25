@@ -2,7 +2,7 @@
     "name": "jx3-emmylua(C++ Native)",
     "displayName": "jx3-EmmyLua(C++ Native)",
     "description": "EmmyLua for vscode(C++ Native)",
-    "version": "0.5.31",
+    "version": "0.5.32",
     "icon": "res/icon.png",
     "publisher": "shellingye",
     "engines": {

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.33](https://github.com/yefansky/xsj-VSCode-EmmyLua/compare/v0.5.32...v0.5.33) (2026-05-25)
+
+
+### Bug Fixes
+
+* 插件重新上架，改名 ([776bdcc](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/776bdcc566e8fce3abb6a54e8c5c8f8247d31834))
+* 插件重新上架，改名 ([ce52a63](https://github.com/yefansky/xsj-VSCode-EmmyLua/commit/ce52a63bfa5d2a4ae2f7ce573d6da5d1191af2b6))
+
 ### [0.5.32](https://github.com/yefansky/xsj-VSCode-EmmyLua/compare/v0.5.31...v0.5.32) (2026-05-25)
 
 
